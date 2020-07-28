@@ -1,5 +1,8 @@
 package support;
 
+import sorting.SortingAlg;
+import sorting.algs.*;
+
 public class Helpers {
 
     /**
@@ -37,5 +40,51 @@ public class Helpers {
             }
         }
         return false;
+    }
+
+    /**
+     * returns the index of the smallest value in a given subarray of integers. searches indices in the range [start, end)
+     * @param array
+     * the integer array to be searched
+     * @param start
+     * the index at which to start the search
+     * @param end
+     * the index before which to end the search
+     * @return
+     */
+    public static int getMinIndex(int[] array, int start, int end){
+
+        assert array.length >= 2 : "array size is less than two!";
+        assert start >= 0 : "starting index is less than zero!";
+        assert end > start : "ending index is less than or equal to start!";
+        assert end < array.length : "ending index is too large!";
+
+        int minIndex = start;
+        for(int index = start + 1; index < end; index++){
+            if(array[index] < array[minIndex]){
+                minIndex = index;
+            }
+        }
+        return minIndex;
+    }
+
+    public static SortingAlg createAlgInstance(String alg, int size){
+        switch(alg){
+            case "bubble":
+                return new BubbleSort(size);
+            case "selection":
+                return new SelectionSort(size);
+            case "insertion":
+                return new InsertionSort(size);
+            case "merge":
+                return new MergeSort(size);
+            default:
+                System.out.println(alg + " sort is not a valid sorting algorithm");
+                return null;
+        }
+    }
+
+    public static SortingAlg createAlgInstance(String alg){
+        return createAlgInstance(alg, 10);
     }
 }

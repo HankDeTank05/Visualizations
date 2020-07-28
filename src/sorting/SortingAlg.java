@@ -85,7 +85,9 @@ public class SortingAlg implements SortingAlgInterface {
      * This method is not intended for visualization purposes.
      */
     public void sort(){
-
+        do{
+            update();
+        }while(!sorted());
     }
 
     public void swap(int aIndex, int bIndex){

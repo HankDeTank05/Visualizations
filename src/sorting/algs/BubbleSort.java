@@ -7,6 +7,9 @@ import sorting.SortingAlg;
 
 public class BubbleSort extends SortingAlg{
 
+    private int currentIndex = 0;
+    private int sortedPortion = 0;
+
     public BubbleSort(){
         super();
     }
@@ -17,28 +20,24 @@ public class BubbleSort extends SortingAlg{
 
     @Override
     /**
-     * perform one pass of the bubble sort algorithm
+     * perform one swap in the bubble sort algorithm
      */
     public void update(){
-        for(int index = 0; index < SIZE - 1; index++){
-            if(values[index] > values[index + 1]){
-                swap(index, index + 1);
+        if(!sorted()) {
+            if (values[currentIndex] > values[currentIndex + 1]) {
+                swap(currentIndex, currentIndex + 1);
+            }
+            currentIndex++;
+            if (currentIndex == SIZE - sortedPortion - 1) {
+                currentIndex = 0;
+                sortedPortion++;
             }
         }
     }
 
-    @Override
-    /**
-     * repeatedly update the array until it is sorted
-     */
-    public void sort(){
-        do{
-            update();
-        }while (!sorted());
-    }
 
     public static void main(String[] args){
-        BubbleSort bs = new BubbleSort();
+        BubbleSort bs = new BubbleSort(50);
         Helpers.print(bs.values);
 
         while(!bs.sorted()){
