@@ -3,6 +3,14 @@ package sorting;
 import java.util.Random;
 import support.Helpers;
 
+/*
+for a list of sorting algorithms you can implement, visit
+https://www.geeksforgeeks.org/sorting-algorithms/#algo
+NOTE: if there is more than one implementation of an
+algorithm, you'll want to pick the iterative one in order
+to utilize the update() method prooperly
+ */
+
 public class SortingAlg implements SortingAlgInterface {
     public int[] values;
     public int SIZE = 10;  // the default size of the array is 10
@@ -32,7 +40,7 @@ public class SortingAlg implements SortingAlgInterface {
     }
 
     /////////////////////
-    /* Mutator methods */
+    /* MUTATOR METHODS */
     /////////////////////
 
     /**
@@ -80,7 +88,6 @@ public class SortingAlg implements SortingAlgInterface {
     }
 
     /**
-     * This sort method does nothing, and is meant to be overridden by subclasses of SortingAlg.
      * The sort() method is used to perform a sorting algorithm continuously until the array is sorted.
      * This method is not intended for visualization purposes.
      */

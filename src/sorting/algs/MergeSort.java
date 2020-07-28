@@ -1,12 +1,18 @@
 package sorting.algs;
 
+/*
+Credit to https://www.geeksforgeeks.org/iterative-merge-sort/
+The iterative Java implementation at the link above was modified in this implementation
+ */
+
 import sorting.SortingAlg;
 import support.Helpers;
-import support.RangeStack;
 
 public class MergeSort extends SortingAlg {
 
+    // for current size of subarrays to be merged currentSize varies from 1 to SIZE
     private int currentSize = 1;
+    // for picking the starting index of left subarray to be merged
     private int leftStart = 0;
 
     public MergeSort(){
@@ -77,14 +83,21 @@ public class MergeSort extends SortingAlg {
      */
     public void update(){
         if(!sorted()){
-//            for(int leftStart = 0; leftStart < SIZE-1; leftStart += 2*currentSize) {}
 
+            // find ending point of left subarray. mid+1 is starting point of right
             int mid = Math.min(leftStart + currentSize - 1, SIZE - 1);
             int rightEnd = Math.min(leftStart + 2 * currentSize - 1, SIZE - 1);
+
+            // merge subarrays arr[left_start...mid] & arr[mid+1...right_end]
             merge(leftStart, mid, rightEnd);
 
+            // pick starting point of different subarrays of current size
             leftStart += 2*currentSize;
 
+            /*
+            merge subarrays in bottom-up manner. first merge subarrays of size 1 to create subarrays
+            of size 2, then merge subarrays of size 2 to create sorted subarrays of size 4, and so on
+             */
             if(leftStart >= SIZE - 1) {
                 currentSize *= 2;
                 leftStart = 0;
